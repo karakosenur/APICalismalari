@@ -4,7 +4,9 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.Assert;
-import org.junit.Test;
+
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
@@ -55,6 +57,21 @@ public class C13_Get_SoftAssertIleExpectedDataTesti {
 
         //4- assertion
 
+        SoftAssert softAssert = new SoftAssert();
+        JsonPath jsonPath=response.jsonPath();
+        softAssert.assertEquals(jsonPath.get("status"),expBody.get("status"));
+        softAssert.assertEquals(jsonPath.get("message"),expBody.get("message"));
+
+        softAssert.assertEquals(jsonPath.get("data.id"),expBody.getJSONObject("data").get("id"));
+        softAssert.assertEquals(jsonPath.get("data.employee_name"),expBody.getJSONObject("data").get("employee_name"));
+        softAssert.assertEquals(jsonPath.get("data.employee_salary"),expBody.getJSONObject("data").get("employee_salary"));
+        softAssert.assertEquals(jsonPath.get("data.employee_age"),expBody.getJSONObject("data").get("employee_age"));
+        softAssert.assertEquals(jsonPath.get("data.profile_image"),expBody.getJSONObject("data").get("profile_image"));
+
+
+        softAssert.assertAll();
+
+        /*
         JsonPath responseJsonPath=(response.jsonPath());
 
         assertEquals(expBody.get("status"),responseJsonPath.get("status"));
@@ -65,5 +82,6 @@ public class C13_Get_SoftAssertIleExpectedDataTesti {
         assertEquals(expBody.getJSONObject("data").get("employee_salary"),responseJsonPath.get("data.employee_salary"));
         assertEquals(expBody.getJSONObject("data").get("employee_age"),responseJsonPath.get("data.employee_age"));
         assertEquals(expBody.getJSONObject("data").get("profile_image"),responseJsonPath.get("data.profile_image"));
+         */
     }
 }
