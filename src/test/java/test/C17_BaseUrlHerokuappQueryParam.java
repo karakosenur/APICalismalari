@@ -58,6 +58,8 @@ public class C17_BaseUrlHerokuappQueryParam extends HerrokuappBaseUrl {
         Response response=given().spec(specHerokuapp).when().get("/{pp1}");
         response.prettyPrint();
 
+        response.then().assertThat().statusCode(200).body("booking.firstname",Matchers.equalTo("Jim"));
+
 
     }
 }
