@@ -13,11 +13,7 @@ public class C16_BaseUrlHerokuapp extends HerrokuappBaseUrl {
         gonderdigimizde donen response’un status code’unun 200 oldugunu ve
         Response’ta 12 booking oldugunu test edin
 
-        2- https://restful-booker.herokuapp.com/booking
-        endpointine asagidaki body’ye sahip bir POST
-        request gonderdigimizde donen response’un
-        status code’unun 200 oldugunu ve “firstname”
-        degerinin “Ahmet” oldugunu test edin
+
         {
         "firstname" : "Ahmet",
         "lastname" : “Bulut",
@@ -43,6 +39,13 @@ public class C16_BaseUrlHerokuapp extends HerrokuappBaseUrl {
                 .body("additionalneeds", Matchers.hasSize(12));
     }
 
+    /*
+     2- https://restful-booker.herokuapp.com/booking
+        endpointine asagidaki body’ye sahip bir POST
+        request gonderdigimizde donen response’un
+        status code’unun 200 oldugunu ve “firstname”
+        degerinin “Ahmet” oldugunu test edin
+     */
     @Test
     public void post01(){
         specHerokuapp.pathParam("pp1","booking");
